@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+
+<body>
+    tenant
+
+
+    <script>
+
+        var webscktstart = 'ws://'
+        // var formData = $("#form")
+        // var messageInput = $("#id_message")
+        // var chatHolder = $("#chat-items")
+        // let me = $("#myUsername").val()
+
+        if (window.location.protocol == 'https:') {
+            webscktstart = 'wss://'
+        }
+
+        let endpoint = webscktstart + window.location.host + window.location.pathname
+        let socket = new WebSocket(endpoint)
+
+        socket.onmessage = function (e) {
+            var messageFromSocket = JSON.parse(e.data)
+
+            console.log(messageFromSocket, "messageFromSocket")
+        }
+
+
+        socket.onopen = function (e) {
+            console.log("opened socket", e)
+        }
+
+        socket.onerror = function (e) {
+            console.log("error", e)
+        }
+
+        socket.onclose = function (e) {
+            console.log("close", e)
+        }
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>
